@@ -1,0 +1,28 @@
+plmodel: pl_models.ContrastivePLModel
+
+optim_cfg:
+  _target_: torch.optim.AdamW
+  lr: 1.0e-3
+
+scheduler_cfg: null
+
+model_cfg:
+  pos_machine: ${pos_machine}
+  sec: ${datamodule.sec}
+  sr: ${sampling_rate}
+  stft_cfg:
+    sr: ${sampling_rate}
+    n_fft: 1024
+    hop_length: 512
+    n_mels: null
+    power: 1.0
+    use_mel: false
+    f_min: 200.0
+    f_max: 8000.0
+    temporal_norm: true
+  metric: "euclid"
+  anc_neg_noise_prob: 0.5
+  statex_prob: 0.0
+  min_snr: -5
+  max_snr: 5
+  margin: 1

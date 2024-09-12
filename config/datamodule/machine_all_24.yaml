@@ -1,0 +1,44 @@
+batch_size: 64
+sec: 18
+
+dcase: "dcase2024"
+
+data_dir: null
+le_path: "${path.exp_root}/${name}/${version}/${pos_machine}/le_dict.pkl"
+
+pretrained_single_idx_dict_path_dict: {}
+pretrained_multi_idx_dict_path_dict: {}
+
+
+train:
+    dataloader:
+        batch_size: ${datamodule.batch_size}
+        num_workers: ${num_workers}
+        pin_memory: true
+        shuffle: true
+    dataset:
+        glob_cond_list:
+             - "${datamodule.data_dir}/ToyCar/train/*.wav"
+             - "${datamodule.data_dir}/ToyTrain/train/*.wav"
+             - "${datamodule.data_dir}/bearing/train/*.wav"
+             - "${datamodule.data_dir}/fan/train/*.wav"
+             - "${datamodule.data_dir}/gearbox/train/*.wav"
+             - "${datamodule.data_dir}/slider/train/*.wav"
+             - "${datamodule.data_dir}/valve/train/*.wav"
+             - "${datamodule.data_dir}/3DPrinter/train/*.wav"
+             - "${datamodule.data_dir}/AirCompressor/train/*.wav"
+             - "${datamodule.data_dir}/BrushlessMotor/train/*.wav"
+             - "${datamodule.data_dir}/HairDryer/train/*.wav"
+             - "${datamodule.data_dir}/HoveringDrone/train/*.wav"
+             - "${datamodule.data_dir}/RoboticArm/train/*.wav"
+             - "${datamodule.data_dir}/Scanner/train/*.wav"
+             - "${datamodule.data_dir}/ToothBrush/train/*.wav"
+             - "${datamodule.data_dir}/ToyCircuit/train/*.wav"
+        allow_cache: true
+    batch_sampler: null
+    collator:
+        sr: ${sampling_rate}
+        sec: ${datamodule.sec}
+        le_path: ${datamodule.le_path}
+        shuffle: true
+        pad_type: "tile"

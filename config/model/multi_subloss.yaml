@@ -1,0 +1,24 @@
+plmodel: pl_models.MultiSubspaceLossPLModel
+
+optim_cfg:
+  _target_: torch.optim.AdamW
+  lr: 1.0e-3
+
+scheduler_cfg: null
+
+model_cfg:
+  extractor_cfg:
+    _target_: models.MultiResolutionModel
+    sec: ${datamodule.sec}
+    sr: ${sampling_rate}
+    use_bias: false
+    stft_cfg_list: []
+  loss_cfg:
+    _target_: models.MultiSCAdaCos
+    n_subclusters: 16
+    dynamic: false
+    reduction: "none"
+  mixup_prob: 0.5
+  mixup_type: "mixup"
+  lam: 1.0
+  label_dict: {}

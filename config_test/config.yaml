@@ -1,0 +1,26 @@
+defaults:
+  - _self_
+  - backend: null
+
+extract: true
+score: true
+
+all_mode: false
+
+device: cuda:0 #cpu #
+pos_machine: null
+name: null
+version: null
+feat_ver: null
+checkpoint: null
+exp_root: null
+seed: 2022
+
+hydra:
+  run:
+    dir: ${exp_root}/${name}/${version}/${pos_machine}
+
+dataloader_cfg:
+  batch_size: 64 #128
+  num_workers: 4
+  # pin_memory: false

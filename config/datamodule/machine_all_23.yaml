@@ -1,0 +1,42 @@
+batch_size: 64
+sec: 18
+
+dcase: "dcase2023"
+
+data_dir: null
+le_path: "${path.exp_root}/${name}/${version}/${pos_machine}/le_dict.pkl"
+
+pretrained_single_idx_dict_path_dict: {}
+pretrained_multi_idx_dict_path_dict: {}
+
+
+train:
+    dataloader:
+        batch_size: ${datamodule.batch_size}
+        num_workers: ${num_workers}
+        pin_memory: true
+        shuffle: true
+    dataset:
+        glob_cond_list:
+             - "${datamodule.data_dir}/ToyCar/train/*.wav"
+             - "${datamodule.data_dir}/ToyTrain/train/*.wav"
+             - "${datamodule.data_dir}/bearing/train/*.wav"
+             - "${datamodule.data_dir}/fan/train/*.wav"
+             - "${datamodule.data_dir}/gearbox/train/*.wav"
+             - "${datamodule.data_dir}/slider/train/*.wav"
+             - "${datamodule.data_dir}/valve/train/*.wav"
+             - "${datamodule.data_dir}/ToyDrone/train/*.wav"
+             - "${datamodule.data_dir}/ToyNscale/train/*.wav"
+             - "${datamodule.data_dir}/ToyTank/train/*.wav"
+             - "${datamodule.data_dir}/Vacuum/train/*.wav"
+             - "${datamodule.data_dir}/bandsaw/train/*.wav"
+             - "${datamodule.data_dir}/grinder/train/*.wav"
+             - "${datamodule.data_dir}/shaker/train/*.wav"
+        allow_cache: true
+    batch_sampler: null
+    collator:
+        sr: ${sampling_rate}
+        sec: ${datamodule.sec}
+        le_path: ${datamodule.le_path}
+        shuffle: true
+        pad_type: "tile"

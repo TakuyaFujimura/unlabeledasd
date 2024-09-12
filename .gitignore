@@ -1,3 +1,15 @@
+results
+pseudoattr/embed
+pseudoattr/label
+pseudoattr/umap_embed
+pseudoattr/*.pth
+pseudoattr/venv_ext
+analysis
+venv
+
+
+.python-version
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

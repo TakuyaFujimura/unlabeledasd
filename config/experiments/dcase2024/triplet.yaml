@@ -1,0 +1,19 @@
+# @package _global_
+defaults:
+    - override /datamodule: machine_all_24_posneg
+    - override /model: contrastive
+    - override /trainer: default
+
+model:
+  model_cfg:
+    anc_neg_noise_prob: 0.5
+    anc_neg_noise_mode: "partial"
+
+
+trainer:
+  max_epochs: 6
+  min_epochs: null
+
+callback_opts:
+  interval:
+    every_n_epochs: 2

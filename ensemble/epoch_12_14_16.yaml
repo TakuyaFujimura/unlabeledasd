@@ -1,0 +1,18 @@
+
+save_dir: "<base_dir>"
+infer_version: "epoch_12_14_16"
+backend: "AS-TargetKmeansCos-16-plain"
+ensemble_list:
+  -
+    result_dir: "<base_dir>"
+    infer_version: epoch12
+    backend: ${backend}
+    # lam: 1.0 # default is 1.0
+  -
+    result_dir: "<base_dir>"
+    infer_version: epoch14
+    backend: ${backend}
+  -
+    result_dir: "<base_dir>"
+    infer_version: epoch16
+    backend: ${backend}

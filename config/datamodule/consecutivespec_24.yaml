@@ -1,0 +1,42 @@
+gen: true
+dcase: "dcase2024"
+data_dir: null
+
+pretrained_single_idx_dict_path_dict: {}
+pretrained_multi_idx_dict_path_dict: {}
+
+
+
+train:
+    dataloader:
+        batch_size: 256
+        num_workers: ${num_workers}
+        pin_memory: true
+        shuffle: true
+    dataset:
+        _target_: datasets.ConsecutiveSpecDataset
+        glob_cond_list:
+             - "${datamodule.data_dir}/${pos_machine}/train/*.wav"
+        stft_cfg: ${model.model_cfg.module_cfg.stft_cfg}
+        n_frames: ${model.model_cfg.module_cfg.n_frames}
+    batch_sampler: null
+    collator: null
+
+
+valid:
+    dataloader:
+        batch_size: 64
+        num_workers: ${num_workers}
+        pin_memory: true
+        shuffle: false
+    dataset:
+        _target_: datasets.ASDDataset
+        glob_cond_list:
+             - "${datamodule.data_dir}/${pos_machine}/test/*.wav"
+        allow_cache: true
+    batch_sampler: null
+    collator:
+        sr: ${sampling_rate}
+        sec: "all"
+        le_path: "ABCDEF"
+        shuffle: false

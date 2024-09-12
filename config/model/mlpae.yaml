@@ -1,0 +1,23 @@
+plmodel: pl_models.AEPLModel
+
+optim_cfg:
+  _target_: torch.optim.Adam #W
+  lr: 1.0e-3
+
+scheduler_cfg: null
+
+model_cfg:
+  module_cfg:
+    _target_: models.MLPAE
+    n_frames: 5
+    stft_cfg:
+      sr: ${sampling_rate}
+      n_fft: 1024
+      hop_length: 512
+      n_mels: 128
+      power: 1.0
+      use_mel: true
+      f_min: 0
+      f_max: null
+    z_dim: 8
+    h_dim: 128
