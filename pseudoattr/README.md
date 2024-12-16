@@ -1,4 +1,6 @@
 # Preparation
+After completing the following preparations, please run `pseudoattr/pseudo_attr.sh` to generate pseudo-labels.
+
 ## PANNs and OpenL3
 - Make venv (`unlabeledasd/pseudoattr/venv_ext`)
 - `cd pseudoattr`
@@ -14,7 +16,7 @@
 - `cd jobs/exp` and execute `./exp3_triplet.sh`
 
 ## Class
-- For DCASE2023, `pattr_macdom_subloss_0256_4096_${seed}` should be executed
-- For DCASE2024, `subloss_0256_4096_${seed}` should be executed
-- These experiments are included in `jobs/exp/exp1.sh`
-    - `cd jobs/exp` and execute `./exp1.sh`
+- In DCASE2023, Class requires that `pattr_macdom_subloss_0256_4096_${seed}` has already been executed.
+    - `pattr_macdom_subloss_0256_4096_${seed}` is included in `jobs/exp/exp3_NA23.sh`. Please execute it first.
+- In DCASE2024, Class requires that `subloss_0256_4096_${seed}` has already been executed.
+    - `subloss_0256_4096_${seed}` is included in `jobs/exp/exp1.sh`. Please execute it first.

@@ -23,7 +23,7 @@
   
 ## Training and Testing
 - The full shell script of the experiments is provided in the `jobs/exp`
-- `exp1.sh`, `exp2.sh`, and `exp3.sh` correspond to Tables 1, 2, and 3, respectively.
+- `exp1.sh`, `exp2.sh`, and `exp3_???.sh` correspond to Tables 1, 2, and 3, respectively.
 - Set `data_dir` in each shell script and execute it
 - These shell scripts run experiments with five different seeds and several methods using a simple `for` loop. If you want to parallelize the process or run it selectively, you can split the `for` loop.
 - When you execute the shell scripts, the training will strat, and the results will be stored in `results/exp/<dcase>/<method>/<machine>/infer/version_epoch<epoch>/*_test_result.csv`
@@ -36,6 +36,18 @@
 ## Pseudo-labeling
 - `pseudoattr/pseudo_attr.sh` generates several types of pseudo-labels using a simple `for` loop. If you want to parallelize the process or run it selectively, you can split the `for` loop.
 - Some pseudo-labeling methods require some preparation. See `pseudoattr/README.md` for more details.
+- Here is a correspondence table between the names in the experiment and the names in the paper
+
+  |  Name@paper   |  2023                                               |   2024                                            | 
+  | ---           | ---                                                 | ---                                               | 
+  |  N/A          |  pattr_macdom_subloss_0256_4096 (exp3_NA23.sh)      |  subloss_0256_4096 (exp1.sh)                      | 
+  |  Class        |  pattr_bic_pre_subloss_0256_4096 (exp3_PL.sh)       |  pattr_bic_pre_subloss_0256_4096 (exp3_PL.sh)     | 
+  |  Triplet      |  pattr_bic_triplet_subloss_0256_4096 (exp3_PL.sh)   |  pattr_bic_triplet_subloss_0256_4096 (exp3_PL.sh) | 
+  |  PANNs        |  pattr_bic_panns_subloss_0256_4096 (exp3_PL.sh)     |  pattr_bic_panns_subloss_0256_4096 (exp3_PL.sh)   | 
+  |  OpenL3       |  pattr_bic_openl3_subloss_0256_4096 (exp3_PL.sh)    |  pattr_bic_openl3_subloss_0256_4096 (exp3_PL.sh)  | 
+  |  GT           |  subloss_0256_4096 (exp1.sh)                        |  pattr_gt_subloss_0256_4096 (exp3_GT24.sh)        | 
+
+
 
 <!-- ## Ensemble -->
 <!-- - `ensemble/ensemble.sh` executes an ensemble of anomaly scores of 12, 14, and 16 epochs -->

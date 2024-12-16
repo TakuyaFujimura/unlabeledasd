@@ -41,7 +41,7 @@ def main(config, machines):
 
     for m in tqdm(machines):
         infer_dir = Path(f"{config.save_dir}/{m}/infer/version_{config.infer_version}")
-        infer_dir.mkdir(parents=True, exist_ok=False)
+        infer_dir.mkdir(parents=True, exist_ok=True)
         save_info(infer_dir)
         # for split in ["test"]:
         for split in ["train", "test"]:
